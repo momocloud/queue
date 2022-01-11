@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{css/login.css}" type="text/css">
+</head>
+<body>
+<div>
+    <div><h1 class="header">Welcome to the queue system</h1></div>
+    <div class="container">
+        <form class="infoInput" method="post">
+            <label>Username</label>
+            <input type="text" id="username" name="username" placeholder="Your username..">
+
+            <label>Password</label>
+            <input type="password" id="passwd" name="passwd" placeholder="Your password..">
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

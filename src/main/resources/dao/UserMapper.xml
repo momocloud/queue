@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.UserMapper">
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO queue.user (id, name, password, identity)
+        VALUES (#{id}, #{name}, #{password}, #{identity})
+    </insert>
+
+    <delete id="deleteUserById" parameterType="int">
+        DELETE FROM queue.user WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE queue.user
+        SET name = #{name}, password = #{password}, identity = #{identity}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectUserById" parameterType="int" resultType="User">
+        SELECT * FROM queue.user WHERE id = #{id}
+    </select>
+
+    <select id="selectUserByNameFuzzy" parameterType="String" resultType="User">
+        SELECT * FROM queue.user WHERE name LIKE CONCAT('%',#{name},'%')
+    </select>
+
+    <select id="selectUserByName" parameterType="String" resultType="User">
+        SELECT * FROM queue.user WHERE name = #{name}
+    </select>
+
+    <select id="selectUserByIdentity" parameterType="int" resultType="User">
+        SELECT * FROM queue.user WHERE identity = #{identity}
+    </select>
+
+    <select id="selectUsers" resultType="User">
+        SELECT * FROM queue.user
+    </select>
+</mapper>

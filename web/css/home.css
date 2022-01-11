@@ -1,0 +1,65 @@
+body{
+    min-height: 100vh;
+    background: #f1f1f1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    background: #B22222;
+    padding: 30px;
+    color: white;
+}
+.welcomeWord{
+    /*float: left;*/
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    /*border: 3px solid #73AD21;*/
+    display: inline-block;
+}
+.logout{
+    float: right;
+    alignment: center;
+    display: inline-block;
+}
+
+.card{
+    background: white;
+    margin-top: 1.5rem;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    padding: 10px;
+    /*border: 3px solid #73AD21;*/
+    display: inline-block;
+}
+.queueText{
+    padding: 15px 25px;
+    float: left;
+    /*border: 3px solid #73AD21;*/
+}
+.queueNum{
+    padding: 15px 25px;
+    float: right;
+    /*border: 3px solid #73AD21;*/
+}
+
+.card:link, .card:visited{
+    color: black;
+    /*text-align: center;*/
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logoutLink:link, .logoutLink:visited {
+    color: white;
+    padding: 15px 25px;
+    /*text-align: center;*/
+    text-decoration: none;
+    display: inline-block;
+}
+/*a.cardLink:link, a.cardLink:visited{*/
+/*    color: black;*/
+/*    padding: 15px 25px;*/
+/*    !*text-align: center;*!*/
+/*    text-decoration: none;*/
+/*    display: inline;*/
+/*}*/
+

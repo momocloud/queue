@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.TaskMapper">
+    <insert id="insertTask" parameterType="Task">
+        INSERT INTO queue.task (id, u_id, q_id, comment, location, join_time)
+        VALUES (#{id}, #{uId}, #{QId}, #{comment}, #{location}, #{joinTime})
+    </insert>
+
+    <delete id="deleteTaskById" parameterType="string">
+        DELETE FROM queue.task WHERE id = #{id}
+    </delete>
+
+    <update id="updateTask" parameterType="Task">
+        UPDATE queue.task
+        SET u_id = #{uId}, q_id = #{qId}, comment = #{comment}, location = #{location}, join_time = #{joinTime}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectTaskById" parameterType="string" resultType="Task">
+        SELECT * FROM queue.task WHERE id = #{id}
+    </select>
+
+    <select id="selectTaskByUId" parameterType="int" resultType="Task">
+        SELECT * FROM queue.task WHERE u_id = #{uId}
+    </select>
+
+    <select id="selectTaskByQId" parameterType="int" resultType="Task">
+        SELECT * FROM queue.task WHERE q_id = #{qId} ORDER BY join_time
+    </select>
+
+    <select id="selectTaskByDoubleId" resultType="Task">
+        SELECT * FROM queue.task
+        <where>
+            <if test="uId != null">
+                AND u_id = #{uId}
+            </if>
+            <if test="qId != null">
+                AND q_id = #{qId}
+            </if>
+        </where>
+        ORDER BY join_time
+    </select>
+
+    <select id="selectTasks" resultType="Task">
+        SELECT * FROM queue.task ORDER BY join_time
+    </select>
+
+    <select id="selectTaskToShowByQId" resultType="TaskToShow">
+        SELECT t.id, u.name AS user_name, t.comment, t.location, t.join_time
+        FROM queue.task AS t, queue.user AS u WHERE t.q_id = #{qId} AND t.u_id = u.id
+        ORDER BY t.join_time
+    </select>
+
+</mapper>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{css/home.css}">
+</head>
+<body>
+
+<div id="root">
+
+    <div class="header">
+        <div class="welcomeWord">
+            <h1>Queue List</h1>
+        </div>
+        <div class="logout">
+            <!--      the link is set to log out      -->
+            <a class="logoutLink" href="/logout">log out</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <a th:each="queue:${queueList}" th:href="@{'/queue/'+${queue.getId()}}" class="card">
+            <div class="queueText" th:text="${queue.getName()}"></div>
+            <div class="queueNum" th:text="'current queue length: '+${queue.getSize()}"></div>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

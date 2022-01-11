@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingRandomAccessFile name="MybatisFileLogger"
+                                 fileName="log/mybatis/mybatis.log"
+                                 filePattern="log/mybatis/mybatis-%d{yyyy-MM-dd}.log"
+                                 append="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="DaoFileLogger"
+                                 fileName="log/dao/dao.log"
+                                 filePattern="log/dao/dao-%d{yyyy-MM-dd}.log"
+                                 append="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="ControllerFileLogger"
+                                 fileName="log/controller/controller.log"
+                                 filePattern="log/controller/controller-%d{yyyy-MM-dd}.log"
+                                 append="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+        <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
+            <AppenderRef ref="MybatisFileLogger"/>
+        </logger>
+
+        <logger name="dao" level="DEBUG" additivity="false">
+            <AppenderRef ref="DaoFileLogger"/>
+        </logger>
+
+        <logger name="controller" level="INFO" additivity="false">
+            <AppenderRef ref="ControllerFileLogger"/>
+        </logger>
+
+    </Loggers>
+</Configuration>

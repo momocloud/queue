@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${queue.getName()}"></title>
+    <link rel="stylesheet" th:href="@{/css/queue.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div>
+    <!--    header    -->
+    <div class="header">
+        <div class="welcomeWord">
+            <h1>Queue Status</h1>
+        </div>
+        <div class="headerEle">
+            <!--      the link is set to log out      -->
+            <a class="headerLink" th:href="@{/logout}">log out</a>
+        </div>
+        <div class="headerEle">
+            <a class="headerLink" th:href="@{/home}">Home</a>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <input hidden="true" id="qID" th:value="${queue.getId()}">
+        <input hidden="true" id="identity" th:value="${userIdentity}">
+        <!--  information input  -->
+        <div class="infoInput">
+            <form method="post" id="infoInput">
+                <label for="comment">Comment</label>
+                <input type="text" id="comment" name="comment" placeholder="Your comment..">
+
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="Your location..">
+
+                <input id="joinLeave" type="button" th:value="${buttonText}" onclick="joinAndLeaveQueue()">
+            </form>
+        </div>
+        <!--  queue status  -->
+        <div id="table" class="status"></div>
+    </div>
+
+</div>
+
+<script src="/js/queue.js"></script>
+</body>
+</html>

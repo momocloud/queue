@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.QueueMapper">
+    <insert id="insertQueue" parameterType="Queue">
+        INSERT INTO queue.queue (id, name)
+        VALUES (#{id}, #{name})
+    </insert>
+
+    <delete id="deleteQueueById" parameterType="Queue">
+        DELETE FROM queue.queue
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateQueue" parameterType="Queue">
+        UPDATE queue.queue SET name = #{name} WHERE id = #{id}
+    </update>
+
+    <select id="selectQueueById" parameterType="int" resultType="Queue">
+        SELECT q.id, q.name, COUNT(t.q_id) AS size FROM queue.queue AS q
+        LEFT JOIN queue.task t on q.id = t.q_id WHERE q.id = #{id} GROUP BY q.id
+    </select>
+
+    <select id="selectQueueByName" parameterType="string" resultType="Queue">
+        SELECT q.id, q.name, COUNT(t.q_id) AS size FROM queue.queue AS q
+        LEFT JOIN queue.task t on q.id = t.q_id WHERE name LIKE CONCAT('%',#{name},'%') GROUP BY q.id
+    </select>
+
+    <select id="selectQueues" resultType="Queue">
+        SELECT q.id, q.name, COUNT(t.q_id) AS size FROM queue.queue AS q
+        LEFT JOIN queue.task t on q.id = t.q_id GROUP BY q.id
+    </select>
+
+</mapper>
